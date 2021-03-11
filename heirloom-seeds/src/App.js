@@ -57,7 +57,7 @@ class App extends Component {
   render() {
     const seeds = this.state.seed.map((seed) => {
       return (
-        <div>
+        <div className="Trouble">
           <h3>{seed.name}</h3>
           <img src={seed.img} alt='seed' />
           <p>
