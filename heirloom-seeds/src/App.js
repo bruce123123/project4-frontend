@@ -7,29 +7,45 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      seeds: [],
+      seed: [],
+      
     };
+
   }
   componentDidMount = () => {
-    this.getSeed();
+    this.getSeeds();
   };
   getSeeds = async () => {
     const response = await axios.get('http://localhost:3001/seed/all');
     this.setState({
       seeds: response.data,
     });
+    
   };
-  loginOnChange = (e) => {
+  postOnChange = (e) => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
-  login = async (e) => {
+  post = async (e) => {
     e.preventDefault();
     const data = {
-      username: this.state.username,
-      password: this.state.password,
+      name: this.state.name,
+      img: this.state.img,
+      catagory: this.state.catagory,
+      cat_type: this.state.cat_type,
+      detailId: this.state.detailId,
+      botan_name: this.state.botan_name,
+      common_name: this.state.common_name,
+      light_requirement: this.state.light_requirement,
+      planting_soil_temp: this.state.planting_soil_temp,
+      plant_depth: this.state.plant_depth,
+      plant_spacing: this.state.plant_spacing,
+      plant_type: this.state.plant_type,
+      fruit_size: this.state.fruit_size,
+      days_to_mature: this.state.days_to_mature,
+      seeds_per_lb: this.state.seeds_per_lb,
     };
     console.log(data);
     const response = await axios.post('http://localhost:3001/auth/login', data);
@@ -39,13 +55,14 @@ class App extends Component {
   };
 
   render() {
-    const seeds = this.state.seeds.map((seed) => {
+    const seeds = this.state.seed.map((seed) => {
       return (
         <div>
           <h3>{seed.name}</h3>
           <img src={seed.img} alt='seed' />
           <p>
             {seed.catagory}, {seed.cat_type}
+            <h1>Oh My</h1>
           </p>
         </div>
       );
