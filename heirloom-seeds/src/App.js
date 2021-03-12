@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
@@ -7,21 +6,33 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      seed: [],
-      
+      seeds: [],
+      details: [],
+      posts: []
     };
-
+    
   }
-  componentDidMount = () => {
-    this.getSeeds();
+  componentDidMount = async () => {
+    // const Seed = await axios.get('http://localhost:3000/Seed/all');
+    // const Detail = await axios.get('http://localhost:3000/Detail/detail');
+    // const Post = await axios.get('http://localhost:3001/Seed');
+    // this.setState({
+      // seed: Seed,
+      // detail: Detail,
+      // post: Post,
+    // });
+this.getAllSeed()
   };
-  getSeeds = async () => {
-    const response = await axios.get('http://localhost:3001/seed/all');
+  getAllSeed = async () => {
+    const response = await axios.get('http://localhost:3000/Seed/all');
     this.setState({
       seeds: response.data,
+      
+      
     });
-    
+    console.log(response.data)
   };
+
   postOnChange = (e) => {
     e.preventDefault();
     this.setState({
@@ -48,14 +59,15 @@ class App extends Component {
       seeds_per_lb: this.state.seeds_per_lb,
     };
     console.log(data);
-    const response = await axios.post('http://localhost:3001/auth/login', data);
+    
+    const response = await axios.post('http://localhost:3001/post', data);
     console.log(response);
     // console.log(data);
     // console.log(response);
   };
 
   render() {
-    const seeds = this.state.seed.map((seed) => {
+    const seeds = this.state.seeds.map((seed) => {
       return (
         <div className="Trouble">
           <h3>{seed.name}</h3>
@@ -64,28 +76,14 @@ class App extends Component {
             {seed.catagory}, {seed.cat_type}
             <h1>Oh My</h1>
           </p>
-        </div>
-      );
+        </div>      
+      );   
     });
     return (
       <div className='App'>
-        <form onSubmit={this.login}>
-          <input
-            name='username'
-            type='text'
-            placeholder='username'
-            value={this.state.username}
-            onChange={this.loginOnChange}
-          />
-          <input
-            name='password'
-            type='password'
-            placeholder='password'
-            value={this.state.password}
-            onChange={this.loginOnChange}
-          />
-          <input type='submit' value='Login' />
-        </form>
+
+
+
         {seeds}
       </div>
     );
