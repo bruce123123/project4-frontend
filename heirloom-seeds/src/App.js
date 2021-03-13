@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios';
+import SeedHomePg from './SeedHomePg';
+import DetailPg from './DetailPg';
+
+import { Route, Link, NavLink } from 'react-router-dom';
+import PostList from './PostList';
 
 class App extends Component {
   constructor(props) {
@@ -13,15 +18,8 @@ class App extends Component {
     
   }
   componentDidMount = async () => {
-    // const Seed = await axios.get('http://localhost:3000/Seed/all');
-    // const Detail = await axios.get('http://localhost:3000/Detail/detail');
-    // const Post = await axios.get('http://localhost:3001/Seed');
-    // this.setState({
-      // seed: Seed,
-      // detail: Detail,
-      // post: Post,
-    // });
 this.getAllSeed()
+
   };
   getAllSeed = async () => {
     const response = await axios.get('http://localhost:3000/Seed/all');
@@ -69,13 +67,28 @@ this.getAllSeed()
   render() {
     const seeds = this.state.seeds.map((seed) => {
       return (
-        <div className="Trouble">
-          <h3>{seed.name}</h3>
-          <img src={seed.img} alt='seed' />
-          <p>
-            {seed.catagory}, {seed.cat_type}
-            <h1>Oh My</h1>
-          </p>
+        <div className="parent">
+          <nav>
+            <NavLink exact to="/" activeStyle={{color: "rgb(0, 179, 255)"}}>Home</NavLink>
+            <NavLink  to="/details" activeStyle={{color: "rgb(0, 179, 255)"}}>Details</NavLink>
+            <NavLink to="/posts" activeStyle={{color: "rgb(0, 179, 255)"}}>Posts</NavLink>
+          </nav>
+          <div className="App">
+            <Link to="/">Seed Home Pg</Link>
+            <Route exact path="/" render={() => (
+            <SeedHomePg seeds={this.state.seeds} />
+            )} />
+            <Route exact path="/details" render={() => (
+            <DetailPg DetailPg={this.state.detailPg} />
+            )} />
+
+          {/* <h3>{seed.name}</h3> */}
+          {/* <img src={seed.img} alt='seed' /> */}
+          {/* <p> */}
+            {/* {seed.catagory}, {seed.cat_type} */}
+            {/* <h1>Oh My</h1> */}
+          {/* </p> */}
+          </div> 
         </div>      
       );   
     });
