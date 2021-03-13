@@ -3,9 +3,11 @@ import './App.css';
 import axios from 'axios';
 import SeedHomePg from './SeedHomePg';
 import DetailPg from './DetailPg';
+import Posts from './Posts';
+import PostsList from './PostsList';
+import DetaiList from './DetaiList';
 
 import { Route, Link, NavLink } from 'react-router-dom';
-import PostList from './PostList';
 
 class App extends Component {
   constructor(props) {
@@ -73,7 +75,7 @@ this.getAllSeed()
             <NavLink  to="/details" activeStyle={{color: "rgb(0, 179, 255)"}}>Details</NavLink>
             <NavLink to="/posts" activeStyle={{color: "rgb(0, 179, 255)"}}>Posts</NavLink>
           </nav>
-          <div className="App">
+          <div className="main">
             <Link to="/">Seed Home Pg</Link>
             <Route exact path="/" render={() => (
             <SeedHomePg seeds={this.state.seeds} />
@@ -81,13 +83,21 @@ this.getAllSeed()
             <Route exact path="/details" render={() => (
             <DetailPg DetailPg={this.state.detailPg} />
             )} />
-
-          {/* <h3>{seed.name}</h3> */}
-          {/* <img src={seed.img} alt='seed' /> */}
-          {/* <p> */}
-            {/* {seed.catagory}, {seed.cat_type} */}
-            {/* <h1>Oh My</h1> */}
-          {/* </p> */}
+            <Route path="/details/:id" render={(routerProps) => (
+            <DetaiList
+            detaiList={this.state.detaiList}
+            {...routerProps}
+            />
+            )} />
+            <Route exact path="/posts" render={() => (
+            <Posts postsList={this.state.posts} />
+            )} />
+            <Route path="/posts/:id" render={(routerProps) => (
+            <PostsList
+            posts={this.state.posts}
+            {...routerProps}
+            />
+            )} />
           </div> 
         </div>      
       );   

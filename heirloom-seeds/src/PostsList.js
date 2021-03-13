@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PostList = props => {
+const PostsList = props => {
 
 
   return(
     <div className="list-container">
-      {props.postList.map(post => (
+      {props.posts.map(post => (
         <div className="list-arrange" key={post.id}>
           <div className="list-image-text-wrapper">
             <Link to={`/posts/${post.id}`}>
@@ -20,4 +20,4 @@ const PostList = props => {
   )
 }
 
-export default PostList;
+export default PostsList;
