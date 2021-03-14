@@ -76,15 +76,15 @@ this.getAllSeed()
             <NavLink to="/posts" activeStyle={{color: "rgb(0, 179, 255)"}}>Posts</NavLink>
           </nav>
           <div className="main">
-            <Link to="/">Seed Home Pg</Link>
+            {/* <Link to="/">Seed Home Pg</Link> */}
             <Route exact path="/" render={() => (
             <SeedHomePg seeds={this.state.seeds} />
             )} />
-            <Route exact path="/details" render={() => (
-            <DetailPg DetailPg={this.state.detailPg} />
-            )} />
+             <Route exact path="/details" render={() => (
+             <DetaiList detaiList={this.state.detaiList} noPicture={this.noPicture}/>
+             )} />
             <Route path="/details/:id" render={(routerProps) => (
-            <DetaiList
+            <DetailPg
             detaiList={this.state.detaiList}
             {...routerProps}
             />
