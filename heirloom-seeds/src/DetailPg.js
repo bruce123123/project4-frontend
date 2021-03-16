@@ -1,35 +1,64 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const DetailPg = props => {
-    const foundDetail = props.detaiList.find(detail => {
-        return detail.id === props.match.params.id;
-    })
+class DetailPg extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      details: {},
+    };
+    
+  }
+  componentDidMount = async () => {
+    this.getAllDetails()
+
+  }
+  getAllDetails = async () => {
+    const response = await axios.get(`http://localhost:3000/details/${this.props.match.params.id}`);
+    this.setState({
+      details:  response.data,   
+    });
+      console.log(response.data)
+  };
+
+  // console.log(props.details)
+    // const foundDetail = props.details.find(detail => {
+      // console.log(detail)
+      // console.log(props.match.params.id)
+        // return detail.id === props.match.params.id;
+    // })
+
+  render() {
 
   return(
      <div className="detail-container">
-      <h2 className="detail-title">{foundDetail.common_name}</h2>
+      <h2 className="detail-title">{this.state.details.common_name}</h2>
       {/* <img className="detail-image" src={foundSeed.imgUrl} alt="seed" /> */}
     <div className="detail-description">
-     <p>{foundDetail.fruit_size}</p>
+     <p>{'Botanical Name: '+this.state.details.botan_name},<br></br><br></br>
+     {'Plant Type: '+this.state.details.plant_type},<br></br><br></br>
+     {'Days to Mature: '+this.state.details.days_to_mature},<br></br><br></br>
+     {'Fruit Size: '+this.state.details.fruit_size},<br></br><br></br>
+     {'Light Requirement: '+this.state.details.light_requirement},<br></br><br></br>
+     {'Planting Depth: '+this.state.details.plant_depth},<br></br><br></br>
+     {'Plant Spacing: '+this.state.details.plant_spacing},<br></br><br></br>
+     {'Planting Soil Temp: '+this.state.details.planting_soil_temp},<br></br><br></br>
+     {'Seeds per lb: '+this.state.details.seeds_per_lb},<br></br><br></br>
+     </p>
+     <div>
+      {/* <Link to={`/details/${detail.id}`}> */}
+        {/* <img src={seed.img} alt='seedimg' /> */}
+        {/* <h2 className="list-image-text">{seed.name}</h2> */}
+      {/* </Link> */}
+     </div>
    </div>
-    <a href={foundDetail.all} target="_blank">
-     <button className="detail-link">Read More</button>
+    <a href={this.state.details.all} target="_blank">
+     {/* <button className="detail-link">Read More</button> */}
    </a>
  </div>
   )
+  }
 }
 
 export default DetailPg;
-
-{/* <div className="list-container"> */}
-  {/* {props.detailPg.map(detail => ( */}
-    // <div className="list-arrange" key={detail.id}>
-      {/* <div className="list-image-text-wrapper"> */}
-        {/* <Link to={`/details/${detail.id}`}> */}
-          // <img src={detail.imageUrl} onError={(e) => e.target.src=".././images-error.png"} alt="image" />
-          {/* <h2 className="list-image-text">{detail.name}</h2> */}
-        {/* </Link> */}
-      {/* </div> */}
-    {/* </div> */}
-  // ))}
-{/* </div> */}

@@ -5,13 +5,12 @@ const SeedHomePg = (props) => {
 
   return (
     <div className="list-container">
-      <h1>Seed Home Page</h1>
-      {props.seeds.map((seed) => (
-         <div className="list-arrange" key={seed.id}>
+      {props.seeds.map((detail) => (
+         <div className="list-arrange" >
             <div className="list-image-text-wrapper">
-              <Link to={`/seeds/${seed.id}`}>
-                <img src={seed.img} alt='seedimg' />
-                <h2 className="list-image-text">{seed.name}</h2>
+              <Link to={`/details/${detail.id}`}>
+                <img src={detail.img} alt='seedimg' />
+                <h2 className="list-image-text">{detail.name}</h2>
               </Link>
             </div>
          </div>
