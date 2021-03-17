@@ -140,7 +140,7 @@ export default class CreatePosts extends Component {
           days_to_mature: this.state.days_to_mature,
           seeds_per_lb: this.state.seeds_per_lb
         };
-        axios.post('http://localhost:3000/posts/add', obj)
+        axios.post('http://localhost:3000/sosts/all', obj)
             .then(res => console.log(res.data));
         
         this.setState({
