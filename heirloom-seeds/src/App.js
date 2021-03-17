@@ -60,7 +60,7 @@ componentDidMount = async () => {
   
     };
     getAllSeed = async () => {
-      const response = await axios.get('http://localhost:3000/Seed/all');
+      const response = await axios.get('http://localhost:3000/seed/all');
       this.setState({
         seeds: response.data,
           
@@ -177,7 +177,7 @@ async onSubmit(e) {
         <div className="container">
           <nav>
             <NavLink exact to="/" activeStyle={{color: "rgb(0, 179, 255)"}}>Home</NavLink>
-            {/* <NavLink  to="/details" activeStyle={{color: "rgb(0, 179, 255)"}}>Details</NavLink> */}
+            <NavLink  to="/createposts" activeStyle={{color: "rgb(0, 179, 255)"}}>Create Post</NavLink>
             <NavLink to="/posts" activeStyle={{color: "rgb(0, 179, 255)"}}>Posts</NavLink>
           </nav>
           <div className="main">

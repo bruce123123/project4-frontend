@@ -53,9 +53,9 @@ class DetailPg extends Component {
       {/* </Link> */}
      </div>
    </div>
-    <a href={this.state.details.all} target="_blank">
+    {/* <a href={this.state.details.all} target="_blank"> */}
      {/* <button className="detail-link">Read More</button> */}
-   </a>
+   {/* </a> */}
  </div>
   )
   }
