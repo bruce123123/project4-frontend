@@ -140,7 +140,7 @@ export default class CreatePosts extends Component {
           days_to_mature: this.state.days_to_mature,
           seeds_per_lb: this.state.seeds_per_lb
         };
-        axios.post('http://localhost:3000/business/add', obj)
+        axios.post('http://localhost:3000/posts/add', obj)
             .then(res => console.log(res.data));
         
         this.setState({
@@ -165,7 +165,7 @@ export default class CreatePosts extends Component {
     render() {
         return (
             <div style={{marginTop: 10}}>
-            <h3>Add New Business</h3>
+            <h3>Add New Seed</h3>
             <form>
                 <div className="form-group">
                     <label>Add Seed Name:  </label>
@@ -236,7 +236,7 @@ export default class CreatePosts extends Component {
                     <input type="text" className="form-control"/>
                 </div>
                 <div className="form-group">
-                    <input type="submit" value="Register Business" className="btn btn-primary"/>
+                    <input type="submit" value="Add your seed" className="btn btn-primary"/>
                 </div>
             </form>
         </div>
@@ -244,5 +244,3 @@ export default class CreatePosts extends Component {
   }
 }
             
-export default CreatePosts;
-

@@ -7,11 +7,11 @@ import DetailPg from './DetailPg';
 import Posts from './Posts';
 import PostsList from './PostsList';
 import DetaiList from './DetaiList';
-import CreatePosts from './createPosts';
-import EditPosts from './editPosts';
-import IndexPosts from './indexPosts';
+import CreatePosts from './CreatePosts';
+import EditPosts from './EditPosts';
+import IndexPosts from './IndexPosts';
 
-import { Route, Link, NavLink } from 'react-router-dom';
+import { Route, Link, Switch, NavLink } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -19,21 +19,24 @@ class App extends Component {
     this.state = {
       seeds: [],
       details: [],
-      posts: []
+      posts: [],
+        name: '',
+        img: '',
+        catagory: '',
+        cat_type: '',
+        detailId: '',
+        botan_name: '',
+        common_name: '',
+        light_requirement: '',
+        planting_soil_temp: '',
+        plant_depth: '',
+        plant_spacing: '',
+        plant_type: '',
+        fruit_size: '',
+        days_to_mature: '',
+        seeds_per_lb: '',
     };
     
-  componentDidMount = async () => {
-this.getAllSeed()
-
-  };
-  getAllSeed = async () => {
-    const response = await axios.get('http://localhost:3000/Seed/all');
-    this.setState({
-      seeds: response.data,
-        
-    });
-    // console.log(response.data)
-  }
   this.onChangeName = this.onChangeName.bind(this);
   this.onChangeImg = this.onChangeImg.bind(this);
   this.onChangeCatagory = this.onChangeCatagory.bind(this);
@@ -50,24 +53,20 @@ this.getAllSeed()
   this.onChangeDaysToMature = this.onChangeDaysToMature.bind(this);
   this.onChangeSeedsPerLb = this.onChangeSeedsPerLb.bind(this);
   this.onSubmit = this.onSubmit.bind(this);
-  this.state = {
-    name: '',
-    img: '',
-    catagory: '',
-    cat_type: '',
-    detailId: '',
-    botan_name: '',
-    common_name: '',
-    light_requirement: '',
-    planting_soil_temp: '',
-    plant_depth: '',
-    plant_spacing: '',
-    plant_type: '',
-    fruit_size: '',
-    days_to_mature: '',
-    seeds_per_lb: '',
-  }
+
 }
+componentDidMount = async () => {
+  this.getAllSeed()
+  
+    };
+    getAllSeed = async () => {
+      const response = await axios.get('http://localhost:3000/Seed/all');
+      this.setState({
+        seeds: response.data,
+          
+      });
+      // console.log(response.data)
+    }
 onChangeName(e) {
 this.setState({
   name: e.target.value
@@ -81,11 +80,6 @@ this.setState({
 onChangeCatagory(e) {
 this.setState({
   catagory: e.target.value
-})
-}
-onChangeCatagory(e) {
-  this.setState({
-    catagory: e.target.value
 })
 }
 onChangeCatType(e) {
@@ -148,7 +142,7 @@ onChangeSeedsPerLb(e) {
   seeds_per_lb: e.target.value
 })
 }
-onSubmit(e) {
+async onSubmit(e) {
   e.preventDefault();
   console.log(`The values are ${this.state.name}, ${this.state.catagory}, and ${this.state.cat_type}`)
   this.setState({
@@ -169,22 +163,21 @@ onSubmit(e) {
     seeds_per_lb: '',
   })
 
-    console.log(data);
+    // console.log(data);
     // 
-    const response = await axios.post('http://localhost:3000/post', data);
-    console.log(response);
-    console.log(data);
-    console.log(response);
+    // const response = await axios.post('http://localhost:3000/post', data);
+    // console.log(response);
+    // console.log(data);
+    // console.log(response);
   };
 
   render() {
     const seeds = this.state.seeds.map((seed) => {
       return (
         <div className="container">
-          <h2>React CRUD</h2>
           <nav>
             <NavLink exact to="/" activeStyle={{color: "rgb(0, 179, 255)"}}>Home</NavLink>
-            <NavLink  to="/details" activeStyle={{color: "rgb(0, 179, 255)"}}>Details</NavLink>
+            {/* <NavLink  to="/details" activeStyle={{color: "rgb(0, 179, 255)"}}>Details</NavLink> */}
             <NavLink to="/posts" activeStyle={{color: "rgb(0, 179, 255)"}}>Posts</NavLink>
           </nav>
           <div className="main">
@@ -202,14 +195,16 @@ onSubmit(e) {
             />
             )} />
             <Switch>
-              <Route exact path='/createPosts' component={ Create } />
-              <Route path='/editPosts/:id' component={ Edit } />
-              <Route path='/indexPosts' component={ Index } />
-          </Switch>
+              <Route exact path='/createPosts' component={ CreatePosts } />
+              <Route path='/editPosts/:id' component={ EditPosts } />
+              <Route path='/indexPosts' component={ IndexPosts } />
+            </Switch>
+
             <Route exact path="/posts" render={() => (
-            <PostsList postsList={this.state.postsList}  />
+            <IndexPosts posts={this.state.posts}  />
             // noPicture={this.noPicture}
             )} />
+
             <Route path="/posts/:id" render={(routerProps) => (
             <Posts
             // posts={this.state.posts}

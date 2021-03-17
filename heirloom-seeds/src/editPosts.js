@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-Posts
+
 export default class EditPosts extends Component {
     render() {
         return (
             <div>
-                <p>Welcome to Edit Component!!</p>
+                <p>Welcome to Edit Seed!!</p>
             </div>
         )
     }
 }
 
-export default EditPosts;

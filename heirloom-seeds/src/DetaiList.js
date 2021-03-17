@@ -15,7 +15,7 @@ import axios from 'axios';
       this.getAllDetails()
     }
     getAllDetails = async () => {
-      const response = await axios.get(`http://localhost:3000/details/1`);
+      const response = await axios.get(`http://localhost:3000/details/`);
       this.setState({
         details:  response.data,   
       });
