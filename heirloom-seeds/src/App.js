@@ -60,7 +60,7 @@ componentDidMount = async () => {
   
     };
     getAllSeed = async () => {
-      const response = await axios.get('http://localhost:3000/seed/all');
+      const response = await axios.get('http://localhost:3000/seed/all'||'https://heriloom-seeds.herokuapp.com/seed/all');
       this.setState({
         seeds: response.data,
           
