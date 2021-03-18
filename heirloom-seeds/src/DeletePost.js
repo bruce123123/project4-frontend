@@ -18,19 +18,55 @@ class DeletePost extends Component {
         <tr>
           <td>
             {this.props.obj.name}
-          </td>
-          <td>
+            </td>
+            <td>
             {this.props.obj.img}
-          </td>
-          <td>
+            </td>
+            <td>
             {this.props.obj.catagory}
-          </td>
-          <td>
+            </td>
+            <td>
+            {this.props.obj.cat_type}
+            </td>
+            <td>
+            {this.props.obj.detailId}
+            </td>
+            <td>
+            {this.props.obj.botan_name}
+            </td>
+            <td>
+            {this.props.obj.common_name}
+            </td>
+            <td>
+            {this.props.obj.light_requirement}
+            </td>
+            <td>
+            {this.props.obj.planting_soil_temp}
+            </td>
+            <td>
+    {this.props.obj.plant_depth}
+</td>
+            <td>
+            {this.props.obj.plant_spacing}
+            </td>
+            <td>
+            {this.props.obj.plant_type}
+            </td>
+            <td>
+            {this.props.obj.fruit_size}
+            </td>
+            <td>
+            {this.props.obj.days_to_mature}
+            </td>
+            <td>
+            {this.props.obj.seeds_per_lb}
+            </td>
+            <td>
             <Link to={"/edit/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
-          </td>
-          <td>
+            </td>
+            <td>
             <button onClick={this.delete} className="btn btn-danger">Delete</button>
-          </td>
+            </td>
         </tr>
     );
   }
