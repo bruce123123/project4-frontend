@@ -16,7 +16,7 @@ class Posts extends Component {
 
   }
   getAllPosts = async () => {
-    const response = await axios.get(`http://localhost:3000/posts/${this.props.match.params.id}`);
+    const response = await axios.get(`http://localhost:3000/posts/${this.props.match.params.id}`||`https://heriloom-seeds.herokuapp.com/posts/${this.props.match.params.id}`);
     this.setState({
       details:  response.data,   
     });

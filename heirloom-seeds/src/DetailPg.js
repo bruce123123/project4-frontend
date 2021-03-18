@@ -15,7 +15,7 @@ class DetailPg extends Component {
 
   }
   getAllDetails = async () => {
-    const response = await axios.get(`http://localhost:3000/details/${this.props.match.params.id}`);
+    const response = await axios.get(`http://localhost:3000/details/${this.props.match.params.id}`||`https://heriloom-seeds.herokuapp.com/details/${this.props.match.params.id}`);
     this.setState({
       details:  response.data,   
     });

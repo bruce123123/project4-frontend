@@ -46,3 +46,5 @@ A basic website that will display seed pictures and link to details, and show po
 ### Issues and Resolutions
 
 struggled with Bootstrap, after loadin had many minor styling errors.  Limited time remaining so troubleshooting styling low on list to fix.
+
+
